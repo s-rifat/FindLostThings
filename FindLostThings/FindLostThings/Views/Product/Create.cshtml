@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
@@ -18,7 +18,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.productName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control" } })
+                @* @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("productName", new List<SelectListItem>
+             {
+                 new SelectListItem{Text = "Phone",Value = "Phone"},
+                 new SelectListItem{Text = "Camera",Value = "Camera"},
+                 new SelectListItem{Text = "Wallet",Value = "Wallet"},
+                 new SelectListItem{Text = "Purse",Value = "Purse"},
+                 new SelectListItem{Text = "Bag",Value = "Bag"},
+                 new SelectListItem{Text = "Headphones",Value = "Headphones"},
+                 new SelectListItem{Text = "Keys",Value = "Keys"},
+                 new SelectListItem{Text = "Umbrella",Value = "Umbrella"},
+                 new SelectListItem{Text = "USBdrive",Value = "USBdrive"},
+                 new SelectListItem{Text = "Glasses",Value = "Glasses"},
+                 new SelectListItem{Text = "Laptop",Value = "Laptop"},
+                 new SelectListItem{Text = "Pendrive",Value = "Pendrive"},
+                 new SelectListItem{Text = "Key",Value = "Key"},
+                 new SelectListItem{Text = "Briefcase",Value = "Briefcase"},
+                 new SelectListItem{Text = "Suitcase",Value = "Suitcase"},
+             }, "Select lost item")
                 @Html.ValidationMessageFor(model => model.productName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +60,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })
+                @*  @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("color", new List<SelectListItem>
+            {
+                new SelectListItem{Text = "Red",Value = "Red"},
+                new SelectListItem{Text = "Blue",Value = "Blue"},
+                new SelectListItem{Text = "Green",Value = "Green"},
+                new SelectListItem{Text = "Yellow",Value = "Yellow"},
+                new SelectListItem{Text = "Black",Value = "Black"},
+                new SelectListItem{Text = "White",Value = "White"},
+                new SelectListItem{Text = "Pink",Value = "Pink"},
+                new SelectListItem{Text = "Gray",Value = "Gray"},
+                new SelectListItem{Text = "Purple",Value = "Purple"},
+                new SelectListItem{Text = "Silver",Value = "Silver"},
+                new SelectListItem{Text = "Golden",Value = "Golden"},
+                 new SelectListItem{Text = "Brown",Value = "Brown"}
+
+            }, "Select color")
                 @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -74,18 +108,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.userType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.userType, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.userType, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("userType", new List<SelectListItem>
+                {
+                    new SelectListItem{Text = "Provider",Value = "Provider"},
+                    new SelectListItem{Text = "Receiver",Value = "Receiver"},
+                }, "Select your type")
                 @Html.ValidationMessageFor(model => model.userType, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+       @* <div class="form-group">
             @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
             </div>
         </div>
+           *@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -100,5 +140,22 @@
 </div>
 
 @section Scripts {
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
 }

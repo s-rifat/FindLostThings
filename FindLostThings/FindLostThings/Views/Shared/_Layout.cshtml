@@ -25,7 +25,7 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a>@User.Identity.Name</a></li>
+                        <li><a>@User.Identity.Name</a></li>                   
                         <li>@Html.ActionLink("Log out", "Logout", "Account")</li>
                     }
                     else

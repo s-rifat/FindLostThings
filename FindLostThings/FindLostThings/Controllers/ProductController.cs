@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,8 +48,15 @@ namespace FindLostThings.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productId,productName,manufacturer,model,color,postatCode,date,description,userType,userId")] Product product)
+        public ActionResult Create([Bind(Include = "productId,productName,manufacturer,model,color,postatCode,date,description,userType")] Product product)
         {
+
+            var user = db.Accounts
+                  .SqlQuery("Select * from Account where userName=@userName", new SqlParameter("@userName", User.Identity.Name))
+                  .FirstOrDefault();
+
+            product.userId = user.userId;
+
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
@@ -81,6 +89,7 @@ namespace FindLostThings.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "productId,productName,manufacturer,model,color,postatCode,date,description,userType,userId")] Product product)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
