@@ -15,11 +15,14 @@ namespace FindLostThings.Controllers
     public class ProductController : Controller
     {
         private ProductContext db = new ProductContext();
+       
 
         // GET: Product
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            
+            return View(db.Products.SqlQuery("SELECT * FROM Product INNER JOIN Account ON Product.userId = Account.userId where Account.userName = @userName", 
+                new SqlParameter("@userName", User.Identity.Name)).ToList());
         }
 
         // GET: Product/Details/5
@@ -48,12 +51,13 @@ namespace FindLostThings.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productId,productName,manufacturer,model,color,postatCode,date,description,userType")] Product product)
+        public ActionResult Create([Bind(Include = "productId,productName,manufacturer,model,color,postalCode,date,description,userType")] Product product)
         {
 
-            var user = db.Accounts
-                  .SqlQuery("Select * from Account where userName=@userName", new SqlParameter("@userName", User.Identity.Name))
-                  .FirstOrDefault();
+            Account user = db.Accounts
+                 .SqlQuery("Select * from Account where userName=@userName", new SqlParameter("@userName", User.Identity.Name))
+                 .FirstOrDefault();
+
 
             product.userId = user.userId;
 
@@ -87,7 +91,7 @@ namespace FindLostThings.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "productId,productName,manufacturer,model,color,postatCode,date,description,userType,userId")] Product product)
+        public ActionResult Edit([Bind(Include = "productId,productName,manufacturer,model,color,postalCode,date,description,userType,userId")] Product product)
         {
             
             if (ModelState.IsValid)

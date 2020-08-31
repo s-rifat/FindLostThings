@@ -42,10 +42,11 @@ namespace FindLostThings.Controllers
         }
         [HttpPost]
 
-        public ActionResult Signup([Bind(Include = "userId,userName,password,phoneNumber")] Account account)
+        public ActionResult Signup([Bind(Include = "userId,userName,password,confirmPassword,phoneNumber")] Account account)
         {
             if (ModelState.IsValid)
             {
+               
                 bool isExist = db.Accounts.Any(x => x.userName == account.userName);
                 if (!isExist)
                 {
@@ -68,6 +69,24 @@ namespace FindLostThings.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Account account = db.Accounts.Find(id);
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+            return View(account);
+        }
+
+        public ActionResult Index()
+        {
+            return View(db.Accounts.ToList());
+        }
 
 
         /*  

@@ -15,23 +15,23 @@ namespace FindLostThings.Models
     {
         public int productId { get; set; }
 
-        //[Required]
+        [Required]
         public string productName { get; set; }
         public string manufacturer { get; set; }
         public string model { get; set; }
 
-       // [Required]
+        [Required]
         public string color { get; set; }
 
-       // [Required]
+        [Required]
         [Range(1000, 9999, ErrorMessage = "Postal code must have 4 digits")]
-        public int postatCode { get; set; }
+        public int postalCode { get; set; }
 
         [Required]
         public Nullable<System.DateTime> date { get; set; }
         public string description { get; set; }
 
-       // [Required]
+        [Required]
         public string userType { get; set; }
         public int userId { get; set; }
 

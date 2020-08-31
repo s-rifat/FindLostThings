@@ -19,11 +19,11 @@ namespace FindLostThings.Models
         public string manufacturer { get; set; }
         public string model { get; set; }
         public string color { get; set; }
-        public int postatCode { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string description { get; set; }
         public string userType { get; set; }
         public int userId { get; set; }
+        public int postalCode { get; set; }
     
         public virtual Account Account { get; set; }
     }

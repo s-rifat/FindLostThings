@@ -4,12 +4,12 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="Models.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
           <ScalarProperty Name="productId" ColumnName="productId" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
           <ScalarProperty Name="model" ColumnName="model" />
           <ScalarProperty Name="color" ColumnName="color" />
-          <ScalarProperty Name="postatCode" ColumnName="postatCode" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="userType" ColumnName="userType" />
