@@ -11,10 +11,10 @@
     <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="date" Type="DateTime" Precision="3" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="userId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Account" Relationship="Models.FK_Product_Account" FromRole="Product" ToRole="Account" />
     <Property Name="postalCode" Type="Int32" Nullable="false" />
+    <Property Name="itemType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="ProductContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Products" EntityType="Self.Product" />
@@ -23,6 +23,7 @@
       <End Role="Account" EntitySet="Accounts" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="Scores" EntityType="Models.Score" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -46,4 +47,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="scoreId" />
+    </Key>
+    <Property Name="scoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lostItemId" Type="Int32" Nullable="false" />
+    <Property Name="foundItemId" Type="Int32" Nullable="false" />
+    <Property Name="isVerified" Type="Int32" Nullable="false" />
+    <Property Name="scoreManufacturer" Type="Int32" Nullable="false" />
+    <Property Name="scoreModel" Type="Int32" Nullable="false" />
+    <Property Name="scoreDescription" Type="Int32" Nullable="false" />
+    <Property Name="lostUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="foundUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

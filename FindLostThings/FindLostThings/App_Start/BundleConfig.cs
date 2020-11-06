@@ -34,8 +34,6 @@ namespace FindLostThings
             //css  
             bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
                    "~/Content/jquery-ui.css"));
-
-
         }
     }
 }

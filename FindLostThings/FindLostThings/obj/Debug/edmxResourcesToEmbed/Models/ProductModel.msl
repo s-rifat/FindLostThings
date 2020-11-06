@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="Models.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="itemType" ColumnName="itemType" />
           <ScalarProperty Name="postalCode" ColumnName="postalCode" />
           <ScalarProperty Name="productId" ColumnName="productId" />
           <ScalarProperty Name="productName" ColumnName="productName" />
@@ -12,7 +13,6 @@
           <ScalarProperty Name="color" ColumnName="color" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="userType" ColumnName="userType" />
           <ScalarProperty Name="userId" ColumnName="userId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -24,6 +24,21 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Scores">
+      <EntityTypeMapping TypeName="Models.Score">
+        <MappingFragment StoreEntitySet="Score">
+          <ScalarProperty Name="foundUserName" ColumnName="foundUserName" />
+          <ScalarProperty Name="lostUserName" ColumnName="lostUserName" />
+          <ScalarProperty Name="scoreDescription" ColumnName="scoreDescription" />
+          <ScalarProperty Name="scoreModel" ColumnName="scoreModel" />
+          <ScalarProperty Name="scoreManufacturer" ColumnName="scoreManufacturer" />
+          <ScalarProperty Name="isVerified" ColumnName="isVerified" />
+          <ScalarProperty Name="foundItemId" ColumnName="foundItemId" />
+          <ScalarProperty Name="lostItemId" ColumnName="lostItemId" />
+          <ScalarProperty Name="scoreId" ColumnName="scoreId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
